@@ -1,5 +1,6 @@
 package com.danebrown.shardingsphere;
 
+import com.danebrown.shardingsphere.service.ShardingJDBC;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -7,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +23,7 @@ import javax.swing.*;
  * @author danebrown
  */
 @SpringBootApplication(
-        excludeName = {"org.apache.shardingsphere.shardingjdbc.spring.boot.SpringBootConfiguration"}
+//        excludeName = {"org.apache.shardingsphere.shardingjdbc.spring.boot.SpringBootConfiguration"}
 )
 @Configuration
 @Log4j2
@@ -33,10 +35,18 @@ public class ShardingSphereBootApplication implements CommandLineRunner {
     }
 
 
-
+    @Autowired
+    ShardingJDBC shardingJDBC;
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("ok");
+        shardingJDBC.runsql();
+    }
+    @Configuration
+    public static class ShardingStartup{
+        @Bean
+        public ShardingJDBC getShardingJDBC(){
+            return new ShardingJDBC();
+        }
     }
 }
