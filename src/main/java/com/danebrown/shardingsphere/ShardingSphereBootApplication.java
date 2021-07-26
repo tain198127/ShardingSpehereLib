@@ -29,11 +29,11 @@ public class ShardingSphereBootApplication implements CommandLineRunner {
                 .run(args);
     }
 
-    @Resource
-    DataSource dataSource;
+
+
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("{}",dataSource);
+        System.out.println("ok");
     }
 }
