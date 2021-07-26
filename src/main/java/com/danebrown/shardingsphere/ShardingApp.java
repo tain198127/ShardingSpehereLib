@@ -21,9 +21,10 @@ import java.util.Properties;
  *
  */
 @Log4j2
-public class App 
+public class ShardingApp
 {
-    public static void main( String[] args ) throws SQLException {
+    private DataSource dataSource;
+    public ShardingApp() throws SQLException {
         Map<String, DataSource> dataSourceMap = new HashMap<>();
         HikariDataSource dataSource1 = new HikariDataSource();
         dataSource1.setDriverClassName("com.mysql.jdbc.Driver");
@@ -48,8 +49,9 @@ public class App
         ShardingRuleConfiguration shardingRuleConfig = new ShardingRuleConfiguration();
         shardingRuleConfig.getTableRuleConfigs().add(orderTableRuleConfig);
 
-        DataSource dataSource = ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingRuleConfig, new Properties());
-
+        dataSource = ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingRuleConfig, new Properties());
+    }
+    public void selectWithParam() throws SQLException {
         String sql = "SELECT o.* FROM SHARDING_TEST o WHERE o.id=?";
         try(Connection conn = dataSource.getConnection();
             PreparedStatement preparedStatement = conn.prepareStatement(sql)
@@ -63,8 +65,39 @@ public class App
                 }
             }
         }
+    }
+    public void selectAll() throws SQLException {
+        String sql = "SELECT o.* FROM SHARDING_TEST o";
+        try(Connection conn = dataSource.getConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql)
+        ){
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while(rs.next()) {
+                    int columnCount = rs.getMetaData().getColumnCount();
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for(int i = 1; i <= columnCount; i++){
+                        stringBuilder.append("\n");
+                        stringBuilder.append(rs.getMetaData().getColumnLabel(i));
+                        stringBuilder.append(":");
+                        stringBuilder.append(rs.getObject(i).toString());
+
+                    }
+                    log.info("{}",stringBuilder.toString());
+//                    System.out.println(rs.getInt(1));
+//                    System.out.println(rs.getDate(2));
+                }
+            }
+        }
+    }
+    public static void main( String[] args ) throws SQLException {
+        ShardingApp app = new ShardingApp();
+        app.selectWithParam();
+        app.selectAll();
+
+
 
 
 
     }
+
 }
