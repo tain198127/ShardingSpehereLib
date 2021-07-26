@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -19,8 +20,10 @@ import javax.swing.*;
  *
  * @author danebrown
  */
-@SpringBootApplication
-@Component
+@SpringBootApplication(
+        excludeName = {"org.apache.shardingsphere.shardingjdbc.spring.boot.SpringBootConfiguration"}
+)
+@Configuration
 @Log4j2
 public class ShardingSphereBootApplication implements CommandLineRunner {
     public static void main(String[] args) {
