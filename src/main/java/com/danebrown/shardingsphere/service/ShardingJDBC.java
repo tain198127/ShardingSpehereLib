@@ -7,6 +7,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,7 +38,13 @@ public class ShardingJDBC {
 //    }
 
     public void runsql() {
-        List<ShardingTest> list = mapper.selectList(null);
-        log.info("selectList:[{}]",list);
+//        List<ShardingTest> list = mapper.selectList(null);
+        ShardingTest st =  new ShardingTest();
+        st.setName("akk");
+        st.setRegDate(new Date());
+        st.setName("11212256");
+        mapper.insert(st);
+        List<ShardingTest> list1 = mapper.selectList(null);
+        log.info("selectList:[{}]",list1);
     }
 }
