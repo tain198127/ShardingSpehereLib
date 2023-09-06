@@ -94,7 +94,7 @@
 
     <Loggers>
 
-        <AsyncRoot level="TRACE" includeLocation="true">
+        <AsyncRoot level="INFO" includeLocation="true">
 
             <AppenderRef ref="Console"/>
             <AppenderRef ref="route"/>

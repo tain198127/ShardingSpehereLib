@@ -1,0 +1,53 @@
+#mode:
+#  type: Standalone
+#  repository:
+#    type: JDBC
+#dataSources:
+#  ds_0:
+#    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+#    url: jdbc:mysql://localhost:3306/ss_0?characterEncoding=utf8
+#    username: root
+#    password: bd198127
+#  ds_1:
+#    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+#    url: jdbc:mysql://localhost:3306/ss_1?characterEncoding=utf8
+#    username: root
+#    password: bd198127
+#  ds_2:
+#    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+#    url: jdbc:mysql://localhost:3306/ss_2?characterEncoding=utf8
+#    username: root
+#    password: bd198127
+#rules:
+#- !SHARDING
+#  autoTables:
+#    sharding_test:
+#      actualDataNodes: ds_$->{0..2}.sharding_test_$->{0..8}
+#      keyGenerateStrategy:
+#        column: id
+#        keyGeneratorName: snowflake
+#      tableStrategy:
+#        standard:
+#          shardingAlgorithmName: t_sharding_test
+#          shardingColumn: sharding_key
+#      shardingAlgorithms:
+#        default_db_inline:
+#          type: INLINE
+#          props:
+#            algorithm-expression: ds_$->{hash(sharding_key) % 9 + 1}
+#        t_order_tbl_inline:
+#          type: INLINE
+#          props:
+#            algorithm-expression: sharding_test_$->{hash(sharding_key) % 9}
+#        t_sharding_test:
+#          type: hash_mod
+#          props:
+#            sharding-count: '9'
+#  keyGenerators:
+#    snowflake:
+#      type: SNOWFLAKE
+#  shardingAlgorithms:
+#    auto-mod:
+#      type: MOD
+#      props:
+#        sharding-count: 3
