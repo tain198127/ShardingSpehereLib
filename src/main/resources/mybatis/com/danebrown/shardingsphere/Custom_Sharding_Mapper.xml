@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.danebrown.shardingsphere.mapper.CustomShardingMapper">
+    <resultMap id="baseResultMap" type="com.danebrown.shardingsphere.dao.CustomSharding">
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="reg_date" property="regDate" jdbcType="DATE" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="sharding_key" property="shardingKey" jdbcType="VARCHAR" />
+    </resultMap>
+</mapper>

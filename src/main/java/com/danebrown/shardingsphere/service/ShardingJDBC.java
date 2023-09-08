@@ -1,6 +1,8 @@
 package com.danebrown.shardingsphere.service;
 
+import com.danebrown.shardingsphere.dao.CustomSharding;
 import com.danebrown.shardingsphere.dao.ShardingTest;
+import com.danebrown.shardingsphere.mapper.CustomShardingMapper;
 import com.danebrown.shardingsphere.mapper.ShardingTestMapper;
 import lombok.extern.log4j.Log4j2;
 import org.mybatis.spring.annotation.MapperScan;
@@ -26,6 +28,9 @@ public class ShardingJDBC {
 
     @Autowired
     private ShardingTestMapper mapper;
+    
+    @Autowired
+    private CustomShardingMapper customShardingMapper;
 
 //    public void init() {
 //        try {
@@ -49,6 +54,17 @@ public class ShardingJDBC {
         mapper.insert(st);
         List<ShardingTest> list1 = mapper.selectList(null);
         log.info("selectList:[{}]",list1);
+    
+    
+        CustomSharding cs = new CustomSharding();
+        cs.setName("custom1");
+        cs.setRegDate(new Date());
+        cs.setShardingKey("tain198127@163.com");
+        customShardingMapper.insert(cs);
+        List<CustomSharding> csList = customShardingMapper.selectList(null);
+        for (CustomSharding customSharding : csList) {
+            log.info("customSharding:[{}]",customSharding);
+        }
     }
     
 }

@@ -104,3 +104,108 @@ create table ss_2.sharding_test_8
         primary key (id)
 );
 
+
+
+# 自定义算法
+create table ss_0.custom_sharding
+(
+    id           int auto_increment,
+    reg_date     datetime null,
+    name         varchar(255) null,
+    sharding_key varchar(255) null,
+    constraint custom_sharding_0_pk
+        primary key (id)
+);
+
+create table ss_0.custom_sharding_0
+(
+    id           int auto_increment,
+    reg_date     datetime null,
+    name         varchar(255) null,
+    sharding_key varchar(255) null,
+    constraint custom_sharding_0_pk
+        primary key (id)
+);
+create table ss_0.custom_sharding_1
+(
+    id           int auto_increment,
+    reg_date     datetime null,
+    name         varchar(255) null,
+    sharding_key varchar(255) null,
+    constraint custom_sharding_1_pk
+        primary key (id)
+);
+create table ss_0.custom_sharding_2
+(
+    id           int auto_increment,
+    reg_date     datetime null,
+    name         varchar(255) null,
+    sharding_key varchar(255) null,
+    constraint custom_sharding_2_pk
+        primary key (id)
+);
+
+create table ss_1.custom_sharding_3
+(
+    id           int auto_increment,
+    reg_date     datetime null,
+    name         varchar(255) null,
+    sharding_key varchar(255) null,
+    constraint custom_sharding_3_pk
+        primary key (id)
+);
+
+create table ss_1.custom_sharding_4
+(
+    id           int auto_increment,
+    reg_date     datetime null,
+    name         varchar(255) null,
+    sharding_key varchar(255) null,
+    constraint custom_sharding_4_pk
+        primary key (id)
+);
+
+create table ss_1.custom_sharding_5
+(
+    id           int auto_increment,
+    reg_date     datetime null,
+    name         varchar(255) null,
+    sharding_key varchar(255) null,
+    constraint custom_sharding_5_pk
+        primary key (id)
+);
+
+
+
+create table ss_2.custom_sharding_6
+(
+    id           int auto_increment,
+    reg_date     datetime null,
+    name         varchar(255) null,
+    sharding_key varchar(255) null,
+    constraint custom_sharding_6_pk
+        primary key (id)
+);
+
+
+create table ss_2.custom_sharding_7
+(
+    id           int auto_increment,
+    reg_date     datetime null,
+    name         varchar(255) null,
+    sharding_key varchar(255) null,
+    constraint custom_sharding_7_pk
+        primary key (id)
+);
+
+
+create table ss_2.custom_sharding_8
+(
+    id           int auto_increment,
+    reg_date     datetime null,
+    name         varchar(255) null,
+    sharding_key varchar(255) null,
+    constraint custom_sharding_8_pk
+        primary key (id)
+);
+
