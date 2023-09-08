@@ -11,6 +11,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -27,6 +28,7 @@ import javax.swing.*;
 )
 @Configuration
 @Log4j2
+@EnableTransactionManagement
 public class ShardingSphereBootApplication implements CommandLineRunner {
     public static void main(String[] args) {
         new SpringApplicationBuilder(ShardingSphereBootApplication.class).

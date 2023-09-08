@@ -101,9 +101,9 @@
 <!--            <AppenderRef ref="Async"/>-->
 
         </AsyncRoot>
-<!--        <AsyncLogger name="com.danebrown.log" level="INFO" additivity="false" includeLocation="false">-->
-<!--            <AppenderRef ref="Async"></AppenderRef>-->
-<!--        </AsyncLogger>-->
+        <AsyncLogger name="org.apache.shardingsphere" level="TRACE" additivity="false" includeLocation="false">
+            <AppenderRef ref="Console"></AppenderRef>
+        </AsyncLogger>
 
     </Loggers>
 

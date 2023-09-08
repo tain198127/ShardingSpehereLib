@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -37,14 +38,17 @@ public class ShardingJDBC {
 //
 //    }
 
+    @Transactional
     public void runsql() {
 //        List<ShardingTest> list = mapper.selectList(null);
         ShardingTest st =  new ShardingTest();
         st.setName("akk");
         st.setRegDate(new Date());
         st.setName("11212256");
+        st.setShardingKey("4");
         mapper.insert(st);
         List<ShardingTest> list1 = mapper.selectList(null);
         log.info("selectList:[{}]",list1);
     }
+    
 }
